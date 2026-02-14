@@ -11,3 +11,4 @@ public:
         return dp[n];
     }
 };
+//to reduce TC store the already created result in an array to avoid calculating same thing multiple times 
