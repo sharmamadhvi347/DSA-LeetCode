@@ -1,52 +1,32 @@
-// #include <climits>
-
-// find_max_cross(vector<int>& nums, int low, int mid, int high){
-//     int ls = INT_MIN;
-//     double sum = 0;
-
-//     for(int i = n/2; i>=0 ; i--){
-//         sum = sum + nums[i];
-//         if (sum > ls){
-//             ls = sum;
-//         }
-//     }
-
-//     int rs = INT_MIN;
-//     for(int j = (n/2)+1; j<n ; j++){
-//         sum = sum + nums[j];
-//         if(sum > rs ){
-//             rs = sum;
-//         }
-//     }
-//     return
-// }
-
-// class Solution {
-// public:
-//     double findMaxAverage(vector<int>& nums, int k) {
-//         int n = nums.size();
-        
-//         return double(sum/k);
-//     }
-// };
-
+#include <climits>
 
 class Solution {
 public:
     double findMaxAverage(vector<int>& nums, int k) {
-        long long windowSum = 0;
+        int n = nums.size();
+        long long sum = 0;
+        
 
-        for (int i = 0; i < k; i++) {
-            windowSum += nums[i];
+        for(int m = 0; m<k; m++){
+            sum = sum + nums[m];
         }
 
-        long long maxSum = windowSum;
+        int i = 0;
+        int j = k-1;
+        long long maxS = sum;
 
-        for (int i = k; i < nums.size(); i++) {
-            windowSum += nums[i] - nums[i - k];
-            maxSum = max(maxSum, windowSum);
+        // if(n==1) return nums[0];
+        // else if(n ==k) return double(sum)/k;
+
+        while(j<n-1 && n!=1 && n!=k){
+            sum = sum - nums[i] + nums[j+1];
+            if(sum>maxS)
+                maxS =sum;
+            j++;
+            i++;    
         }
 
-        return (double)maxSum / k;
+        return double(maxS)/k;
+
     }
 };
