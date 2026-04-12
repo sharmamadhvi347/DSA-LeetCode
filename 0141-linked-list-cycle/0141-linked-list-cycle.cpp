@@ -13,7 +13,7 @@ public:
         ListNode* ptr = head;
         
         while(ptr != NULL){
-            if(i==400) return true;
+            if(i==100000) return true;
             ptr = ptr->next;
             i++;
         }
