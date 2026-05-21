@@ -1,3 +1,4 @@
+#include <climits>
 class Solution {
 public:
     int reverse(int x) {
@@ -9,7 +10,7 @@ public:
             m = m*10 + y;
             x = x/10;
         }
-        if (m > 2147483647 || m < -2147483648)
+        if (m > INT_MAX || m < INT_MIN)
             return 0;
         return m;
     }
