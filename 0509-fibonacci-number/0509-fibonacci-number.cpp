@@ -1,25 +1,18 @@
 class Solution {
 public:
-
-    // int arr[100];
-    // int fib(int n) {
-    //     if(n == 0 )return 0;
-    //     if(n == 1) return 1;
-
-    //     if (arr[n] !=0 )return arr[n];
-
-    //     arr[n] = fib(n-1) + fib(n-2);
-    //     return arr[n];
-    // }
-
     int fib(int n) {
-        if(n<=1) return n;
-        int dp[n+1];
-        dp[0] = 0;
-        dp[1] = 1;
-        for(int i = 2; i<=n ; i++){
-            dp[i] = dp[i-1] + dp[i-2];
+        if (n==0) return 0;
+        else{
+            int d[n+1] ;
+            d[0] = 0;
+            d[1] = 1;
+
+            for(int i = 2; i<=n; i++){
+                d[i] = d[i-1] + d[i-2];
+            }
+
+            return d[n];
         }
-        return dp[n];
+        
     }
 };
