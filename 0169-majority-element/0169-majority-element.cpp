@@ -1,6 +1,7 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
+        //do it using boyer- moore vote algo also
         int n = nums.size();
         unordered_map<int, int> mpp;
 
