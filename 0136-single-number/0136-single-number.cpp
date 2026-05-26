@@ -5,16 +5,28 @@ public:
 
 //solve it using hashing also now
     int singleNumber(vector<int>& nums) {
-        //epic sol using XOR
-        int ans = 0;
+        //[SOL-1 HASH:
+        unordered_map<int,int> freq;
 
-        for(int x : nums){
-            ans ^=x;
+        for( int x : nums){
+            freq[x]++;
         }
 
-        return ans;
+        for(auto it: freq){
+            if(it.second == 1) return it.first;
+        }
+
+        return -1;
+
+        // [SOL-2- AMAIZING
+        //epic sol using XOR
+        // int ans = 0;
+        // for(int x : nums)
+        //     ans ^=x;
+        // return ans;]
 
 
+        //[SOL-3
         // int n = nums.size();
         // sort(nums.begin(), nums.end());
         // int max=nums[n-1];//max should be set after sorting not before!!, you did this mistake here so be careful for further ques
@@ -26,7 +38,6 @@ public:
         //         break;
         //     }
         // }
-
-        // return max;
+        // return max;]
     }
 };
