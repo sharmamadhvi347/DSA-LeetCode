@@ -5,26 +5,26 @@ public:
 
 //solve it using hashing also now
     int singleNumber(vector<int>& nums) {
-        //[SOL-1 HASH:
-        unordered_map<int,int> freq;
-
-        for( int x : nums){
-            freq[x]++;
-        }
-
-        for(auto it: freq){
-            if(it.second == 1) return it.first;
-        }
-
-        return -1;
 
         // [SOL-2- AMAIZING
         //epic sol using XOR
-        // int ans = 0;
-        // for(int x : nums)
-        //     ans ^=x;
-        // return ans;]
+        int ans = 0;
+        for(int x : nums)
+            ans ^=x;
+        return ans;
+        //]
 
+
+        //[SOL-1 HASH:
+        // unordered_map<int,int> freq;
+        // for( int x : nums){
+        //     freq[x]++;
+        // }
+        // for(auto it: freq){
+        //     if(it.second == 1) return it.first;
+        // }
+        // return -1;
+        // ]
 
         //[SOL-3
         // int n = nums.size();
