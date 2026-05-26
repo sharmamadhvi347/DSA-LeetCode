@@ -2,6 +2,8 @@
 
 class Solution {
 public:
+
+//solve it using hashing also now
     int singleNumber(vector<int>& nums) {
         int n = nums.size();
         sort(nums.begin(), nums.end());
