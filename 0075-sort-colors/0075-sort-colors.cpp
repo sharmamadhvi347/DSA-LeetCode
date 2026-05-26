@@ -1,6 +1,7 @@
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
+        //using dutch national flag algo->done in another id
         int n = nums.size();
 
         for(int i = 1; i<n; i++){
