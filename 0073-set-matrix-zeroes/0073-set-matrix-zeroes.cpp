@@ -3,6 +3,9 @@
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
+
+        //next time do it with O(1) space compl, typical sol for this ques
+
         unordered_set<int> row;
         unordered_set<int> column;
 
@@ -31,5 +34,6 @@ public:
         }
 
         return;
+
     }
 };
