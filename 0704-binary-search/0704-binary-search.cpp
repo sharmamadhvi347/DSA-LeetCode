@@ -1,9 +1,9 @@
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
-        int n = nums.size();
+        int m = nums.size();
         int low= 0;
-        int high = n-1;
+        int high = m-1;
 
         while(low<= high){
             int mid = (low+high)/2;
