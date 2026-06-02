@@ -1,6 +1,7 @@
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
+        //can be done in single pass also and applying BS only once, that way is cool
         int n = nums.size();
         int i =1;
         int low;
