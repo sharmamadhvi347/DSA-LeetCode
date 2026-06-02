@@ -1,43 +1,35 @@
 class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
-        int low = 0;
-        int high = nums.size()-1;
-        vector<int> arr(2, -1);
-        int mid;
+        int n = nums.size();
+        int low= 0;
+        int high = n-1;
+        int marker1 =-1;
+        int marker2 = -1;
+        int i = 0;
+        int j = 0;
 
-        while(low<=high){
-            mid = (low+high)/2;
+        while(n>0 && low<= high){
+            int mid = (low+high)/2;
 
-            if(nums[mid]==target){
-                if(mid > 0 && nums[mid-1]==target) high= mid-1;
-                else{
-                arr[0]=mid;
-                break;}
+            if(nums[mid] < target) low = mid+1;
+            else if( nums[mid] > target) high = mid-1;
+            else if(nums[mid] == target) {
+                i = mid;
+                j = mid;
+                break;
             }
-
-            else if(nums[mid]<target) low = mid+1;
-            else if(nums[mid]>target) high = mid-1;
         }
 
-        low = 0;
-        high = nums.size() - 1;
-
-
-        while(low<=high){
-            int mid1 = (low+high)/2;
-
-            if(nums[mid1]==target){
-                if((mid1 != nums.size() - 1) && nums[mid1+1]==target) low= mid1+1;
-                else{ 
-                arr[1]=mid1;
-                break;}
-            }
-
-            else if(nums[mid1]<target) low = mid1+1;
-            else if(nums[mid1]>target) high = mid1-1;
+        while(n>0 && i>=0 && nums[i]==target){
+            marker1 = i;
+            i--;
+        }
+        while(n>0 && j<n && nums[j]==target){
+            marker2 = j;
+            j++;
         }
 
-        return arr;
+        return {marker1,marker2};
     }
 };
