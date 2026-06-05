@@ -1,0 +1,78 @@
+class Solution {
+public:
+    using ll = long long;
+
+    struct Node {
+        long long cnt;
+        long long wav;
+    };
+
+    string s;
+    Node dp[20][11][11][2];
+    bool vis[20][11][11][2];
+
+    Node dfs(int pos, int prev2, int prev1, bool started, bool tight) {
+        if (pos == s.size()) {
+            return {1, 0};
+        }
+
+        if (!tight && vis[pos][prev2][prev1][started]) {
+            return dp[pos][prev2][prev1][started];
+        }
+
+        int limit = tight ? s[pos] - '0' : 9;
+
+        Node res{0, 0};
+
+        for (int d = 0; d <= limit; d++) {
+            bool ntight = tight && (d == limit);
+
+            if (!started && d == 0) {
+                Node child = dfs(pos + 1, 10, 10, false, ntight);
+                res.cnt += child.cnt;
+                res.wav += child.wav;
+                continue;
+            }
+
+            if (!started) {
+                Node child = dfs(pos + 1, 10, d, true, ntight);
+                res.cnt += child.cnt;
+                res.wav += child.wav;
+                continue;
+            }
+
+            int add = 0;
+
+            if (prev2 != 10) {
+                if ((prev1 > prev2 && prev1 > d) ||
+                    (prev1 < prev2 && prev1 < d))
+                    add = 1;
+            }
+
+            Node child = dfs(pos + 1, prev1, d, true, ntight);
+
+            res.cnt += child.cnt;
+            res.wav += child.wav + child.cnt * add;
+        }
+
+        if (!tight) {
+            vis[pos][prev2][prev1][started] = true;
+            dp[pos][prev2][prev1][started] = res;
+        }
+
+        return res;
+    }
+
+    long long solve(long long x) {
+        if (x <= 0) return 0;
+
+        memset(vis, 0, sizeof(vis));
+        s = to_string(x);
+
+        return dfs(0, 10, 10, false, true).wav;
+    }
+
+    long long totalWaviness(long long num1, long long num2) {
+        return solve(num2) - solve(num1 - 1);
+    }
+};
