@@ -61,5 +61,6 @@ public:
 };
 
 //can be done with stack but SC will increase 
+//best sol will use slow fast pointer and that sol will be best because it will reach middle element in just 1 go
 
 
