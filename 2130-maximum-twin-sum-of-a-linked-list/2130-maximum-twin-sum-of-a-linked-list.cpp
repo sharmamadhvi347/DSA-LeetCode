@@ -22,11 +22,13 @@ public:
     int n = 0;
     int count = 0;
 
+//counting length of LL
     while(ptr != NULL){
         ptr = ptr->next;
         n++;
     }
 
+//going to middle ele
     while(count < n/2){
         preptr = ptr2;
         ptr2 = ptr2->next;
@@ -35,6 +37,7 @@ public:
 
     preptr->next = NULL;
 
+//reversing
     while(ptr2 != NULL){
         ListNode* nextptr = ptr2->next;
 
@@ -43,6 +46,7 @@ public:
         ptr2 = nextptr;
     }
 
+//adding and checking twin sum
     for(int i = 0; i < n/2; i++){
         sum = ptr1->val + preptr->val;
         if(sum > maxi)
@@ -55,5 +59,7 @@ public:
     return maxi;
 }
 };
+
+//can be done with stack but SC will increase 
 
 
