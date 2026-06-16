@@ -14,25 +14,11 @@ public:
             }
 
             else if(s[i]=='#'){
-                string dup = result;
-                int r = result.size();
-                for(int i=0; i<r; i++){
-                    result.push_back(dup[i]);
-                }
+                result +=result;
             }
 
             else if(s[i]=='%'){
-                int r = result.size() -1;
-                int l = 0;
-                
-                while(l<=r){
-                    char temp = ' ';
-                    temp = result[r];
-                    result[r] = result[l];
-                    result[l] = temp;
-                    r--;
-                    l++;
-                }
+                reverse(result.begin(),result.end());
             }
 
             else result.push_back(s[i]);
