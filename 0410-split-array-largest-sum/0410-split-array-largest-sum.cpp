@@ -3,6 +3,8 @@
 class Solution {
 public:
 
+//ditto as book allocation problem
+
     bool isPossible(vector<int>& nums, int k, int barrier){
         int stu =1, pages =0;
 
