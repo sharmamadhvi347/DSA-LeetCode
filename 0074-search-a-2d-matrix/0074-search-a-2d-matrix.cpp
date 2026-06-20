@@ -10,9 +10,7 @@ public:
 
         while(lo<=high){
             long long mid = (high+lo)/2;
-            long long a = mid/n;
-            long long b = mid %n;
-            long long element = matrix[a][b];
+            long long element = matrix[mid/n][mid %n];
             
             if(element > target) high = mid-1;
             if(element < target) lo = mid + 1;
