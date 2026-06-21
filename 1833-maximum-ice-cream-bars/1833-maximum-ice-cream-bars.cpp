@@ -1,6 +1,7 @@
 class Solution {
 public:
     int maxIceCream(vector<int>& costs, int coins) {
+        //can be done with simple sorting but they are asking for count sorting so here is the sol with that:
         int n = costs.size();
         long long max = *max_element(costs.begin(), costs.end());
         vector<long long> mx(max + 1, 0);
