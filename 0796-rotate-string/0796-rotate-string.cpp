@@ -3,6 +3,7 @@
 class Solution {
 public:
     bool rotateString(string s, string goal) {
+        //using concatination
         int i =0;
         string rotated = "";
         while(i<s.size()){
