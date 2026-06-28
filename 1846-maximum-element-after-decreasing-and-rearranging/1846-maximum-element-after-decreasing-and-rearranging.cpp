@@ -1,6 +1,7 @@
 class Solution {
 public:
     int maximumElementAfterDecrementingAndRearranging(vector<int>& arr) {
+        //next time try with counting sort
         int n=arr.size();
         sort(arr.begin(),arr.end());
         int i =1;
