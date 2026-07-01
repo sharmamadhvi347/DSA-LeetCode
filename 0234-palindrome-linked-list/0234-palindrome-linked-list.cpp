@@ -10,6 +10,8 @@
  */
 class Solution {
 public:
+
+//another sol for O(1) SC is by reversing half of the LL;
     bool isPalindrome(ListNode* head) {
         ListNode *ptr1 = head;
         ListNode *ptr2 = head;
