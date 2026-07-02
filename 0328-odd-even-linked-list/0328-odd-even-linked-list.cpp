@@ -19,7 +19,7 @@ public:
         ptr2 = ptr2->next;
         ListNode *head2 = ptr2;
 
-        while(ptr1 != NULL){
+        while(true){
             if(ptr2 == NULL || ptr2->next == NULL){
                 ptr1->next = head2;
                 break;
