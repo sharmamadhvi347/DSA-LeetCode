@@ -11,26 +11,37 @@
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        //store address in the hash table and whenever the count visit of any address becomes 2 return it 
-        ListNode *ptr1 = headA;
-        ListNode *ptr2 = headB;
-        unordered_map<ListNode*, bool> visited;
+        ListNode* p1 = headA;
+        ListNode* p2 = headB;
 
-        while(ptr1 != NULL || ptr2 != NULL){
-            if(visited[ptr1]==true) return ptr1;
-            if(ptr1!=NULL){
-                visited[ptr1] = true;
-                ptr1 = ptr1->next;
-            }
-
-            if(visited[ptr2]==true) return ptr2;
-            
-            if(ptr2!=NULL){
-                visited[ptr2]= true;
-                ptr2 = ptr2->next;
-            }
+        while (p1 != p2) {
+            p1 = (p1 == nullptr) ? headB : p1->next;
+            p2 = (p2 == nullptr) ? headA : p2->next;
         }
 
-        return NULL;
+        return p1;
+
+        //SOLUTION 2:
+        //store address in the hash table and whenever the count visit of any address becomes 2 return it 
+        // ListNode *ptr1 = headA;
+        // ListNode *ptr2 = headB;
+        // unordered_map<ListNode*, bool> visited;
+
+        // while(ptr1 != NULL || ptr2 != NULL){
+        //     if(visited[ptr1]==true) return ptr1;
+        //     if(ptr1!=NULL){
+        //         visited[ptr1] = true;
+        //         ptr1 = ptr1->next;
+        //     }
+
+        //     if(visited[ptr2]==true) return ptr2;
+            
+        //     if(ptr2!=NULL){
+        //         visited[ptr2]= true;
+        //         ptr2 = ptr2->next;
+        //     }
+        // }
+
+        // return NULL;
     }
 };
