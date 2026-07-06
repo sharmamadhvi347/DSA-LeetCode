@@ -14,24 +14,9 @@ public:
             return a[0] < b[0];       // increasing
         });
         while(i<n){
-            if(intervals[i][0] <= min && intervals[i][1] >= max){
-                min = intervals[i][0];
-                max = intervals[i][1];
-                count = 1;
-            }
-
-            else if (intervals[i][0] < min && intervals[i][1] < max){
-                 min = intervals[i][0];
-                 count++;
-            }
-
-            else if (intervals[i][0] > min && intervals[i][1] > max){
+            if (intervals[i][1] > max){
                  max = intervals[i][1];
                  count++;
-            }
-            else {
-                i++;
-                continue;
             }
             i++;
         }
