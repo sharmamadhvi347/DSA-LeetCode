@@ -2,7 +2,7 @@ class Solution {
 public:
     int largestRectangleArea(vector<int>& h) {
         stack<int> st;
-        h.push_back(0);
+        h.push_back(0); // this line helps the stack to get empty because the last element is 0.
         int ans = 0;
 
         for (int i = 0; i < h.size(); i++) {
