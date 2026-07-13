@@ -1,3 +1,4 @@
+//sol using string and sliding window- altought you dont need to do this ques like that but still
 class Solution {
 public:
     vector<int> sequentialDigits(int low, int high) {
