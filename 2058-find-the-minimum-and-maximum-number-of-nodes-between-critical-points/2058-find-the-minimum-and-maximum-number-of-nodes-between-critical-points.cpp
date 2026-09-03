@@ -1,28 +1,48 @@
 class Solution {
 public:
     vector<int> nodesBetweenCriticalPoints(ListNode* head) {
-        int Min = 100000, i = 1;
-        int c[2] = {0, 0};
+        vector<int> result = {-1, -1};
 
-        auto prev = head, curr = head->next, nxt = head->next->next;
+        // Initialize minimum distance to the maximum possible value
+        int minDistance = INT_MAX;
 
-        auto isCrit = [&]() {
-            auto x = prev->val, y = curr->val, z = nxt->val;
-            return (x < y && y > z) || (x > y && y < z);
-        };
+        // Pointers to track the previous node, current node, and indices
+        ListNode* previousNode = head;
+        ListNode* currentNode = head->next;
+        int currentIndex = 1;
+        int previousCriticalIndex = 0;
+        int firstCriticalIndex = 0;
 
-        while (nxt) {
-            if (isCrit()) {
-                if (c[0]) Min = min(Min, i - c[c[1] > 0]);
-                c[c[0] > 0] = i;
+        while (currentNode->next != nullptr) {
+            // Check if the current node is a local maxima or minima
+            if ((currentNode->val < previousNode->val &&
+                 currentNode->val < currentNode->next->val) ||
+                (currentNode->val > previousNode->val &&
+                 currentNode->val > currentNode->next->val)) {
+                // If this is the first critical point found
+                if (previousCriticalIndex == 0) {
+                    previousCriticalIndex = currentIndex;
+                    firstCriticalIndex = currentIndex;
+                } else {
+                    // Calculate the minimum distance between critical points
+                    minDistance =
+                        min(minDistance, currentIndex - previousCriticalIndex);
+                    previousCriticalIndex = currentIndex;
+                }
             }
 
-            prev = curr; curr = nxt;
-            nxt = nxt->next; i++;
+            // Move to the next node and update indices
+            currentIndex++;
+            previousNode = currentNode;
+            currentNode = currentNode->next;
         }
 
-        if (c[1]) return {Min, c[1] - c[0]};
+        // If at least two critical points were found
+        if (minDistance != INT_MAX) {
+            int maxDistance = previousCriticalIndex - firstCriticalIndex;
+            result = {minDistance, maxDistance};
+        }
 
-        return {-1, -1};
+        return result;
     }
 };
