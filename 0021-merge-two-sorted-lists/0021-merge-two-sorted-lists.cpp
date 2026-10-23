@@ -1,43 +1,37 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        if(list1 == NULL) return list2;
-        if(list2 == NULL) return list1;
+        ListNode dummy(0);
+        ListNode* node = &dummy;
 
-        ListNode* ptr1 = list1;
-        ListNode* ptr2 = list2;
-
-        ListNode* ptra = NULL;
-        ListNode* preptr = NULL;
-
-        if(ptr2->val <= ptr1->val) {
-            ptra = ptr2;
-            preptr = ptr2;
-            ptr2 = ptr2->next;    
-        }
-        else {
-            ptra = ptr1;
-            preptr = ptr1; 
-            ptr1 = ptr1->next;
-        }
-
-        while(ptr1 != NULL && ptr2 != NULL){
-            if(ptr1->val < ptr2->val){
-                preptr->next = ptr1;
-                preptr = ptr1;
-                ptr1 = ptr1->next;
+        while (list1 && list2) {
+            if (list1->val < list2->val) {
+                node->next = list1;
+                list1 = list1->next;
+            } else {
+                node->next = list2;
+                list2 = list2->next;
             }
-            else{
-                preptr->next = ptr2;
-                preptr = ptr2;
-                ptr2 = ptr2->next;
-            }
+            node = node->next;
         }
 
-        // attach remaining
-        if(ptr1 != NULL) preptr->next = ptr1;
-        if(ptr2 != NULL) preptr->next = ptr2;
+        if (list1) {
+            node->next = list1;
+        } else {
+            node->next = list2;
+        }
 
-        return ptra;
+        return dummy.next;
     }
 };
