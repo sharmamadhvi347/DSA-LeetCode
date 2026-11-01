@@ -1,22 +1,48 @@
+
 class Solution {
 public:
     string minWindow(string s, string t) {
-        vector<int> need(128, 0);
-        for (char c : t) need[c]++;
 
-        int l = 0, count = t.size(), start = 0, len = INT_MAX;
+        string ans = "";
+        int minLen = INT_MAX;
 
-        for (int r = 0; r < s.size(); r++) {
-            if (need[s[r]]-- > 0) count--;
+        if(t.size() > s.size()) return ans;
 
-            while (count == 0) {
-                if (r - l + 1 < len) {
-                    len = r - l + 1;
-                    start = l;
+        // Frequency array instead of hashmap
+        vector<int> mp(256, 0);
+
+        for(char c : t) mp[(unsigned char)c]++;
+
+        int left = 0, count = t.size();
+        int start = 0;
+
+        for(int right = 0; right < s.size(); right++) {
+
+            if(mp[(unsigned char)s[right]] > 0)
+                count--;
+
+            mp[(unsigned char)s[right]]--;
+
+            while(count == 0) {
+
+                // Update minimum window
+                if(right - left + 1 < minLen) {
+                    minLen = right - left + 1;
+                    start = left;
                 }
-                if (++need[s[l++]] > 0) count++;
+
+                mp[(unsigned char)s[left]]++;
+
+                if(mp[(unsigned char)s[left]] > 0)
+                    count++;
+
+                left++;
             }
         }
-        return len == INT_MAX ? "" : s.substr(start, len);
+
+        if(minLen != INT_MAX)
+            ans = s.substr(start, minLen);
+
+        return ans;
     }
 };
